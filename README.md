@@ -2,6 +2,10 @@
 
 Welcome to the Weather App! This app allows users to view the current weather of different cities.
 
+## Video Demonstration
+
+Check out the video demonstration of the app [here](https://www.youtube.com/watch?v=kwZT8F2WG2M).
+
 ## Features
 
 - Select Country: Users can select their country from a list of available countries.
@@ -35,6 +39,10 @@ To run this app on your local machine, follow these steps:
 ## Contributing
 
 Contributions are welcome! If you find any bugs or want to suggest improvements, please open an issue or submit a pull request.
+
+## APK Download
+
+Download the APK file [here](https://drive.google.com/file/d/1K_HqrAnPkImcE3n3N4Fn9pFdcOVfwbg7/view?usp=sharing).
 
 # Recommended next steps:
 Note: Make sure you have installed native code dependencies [here](https://reactnative.dev/docs/environment-setup#installing-dependencies)
