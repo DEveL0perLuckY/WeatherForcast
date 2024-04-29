@@ -13,29 +13,37 @@ import axios from "axios";
 import { AuthContext } from "./AuthContext";
 import Toast from "react-native-toast-message";
 
+// Component for selecting a city
 const SelectCity = ({ navigation }) => {
-  const [cities, setCities] = useState([]);
-  const [search, setSearch] = useState("");
-  const [filteredCities, setFilteredCities] = useState([]);
-  const { setIsNewUser } = useContext(AuthContext);
-  const [country, setCountry] = useState("");
+  // State variables
+  const [cities, setCities] = useState([]); // List of all cities
+  const [search, setSearch] = useState(""); // Search query
+  const [filteredCities, setFilteredCities] = useState([]); // Filtered list of cities based on search query
+  const { setIsNewUser } = useContext(AuthContext); // Context for authentication
+  const [country, setCountry] = useState(""); // Selected country
 
+  // Fetch cities data when component mounts
   useEffect(() => {
     fetchCities();
   }, []);
 
+  // Function to fetch list of cities for the selected country
   const fetchCities = async () => {
     try {
+      // Get selected country from AsyncStorage
       const con = await AsyncStorage.getItem("country");
       setCountry(con);
+      // Fetch cities data from API
       const response = await axios.post(
         "https://countriesnow.space/api/v0.1/countries/cities",
         { country: con }
       );
       const data = response.data.data;
+      // Set cities data and initialize filtered cities with all cities
       setCities(data);
       setFilteredCities(data);
     } catch (error) {
+      // Handle error fetching cities
       console.error("Error fetching cities:", error);
       Toast.show({
         type: "error",
@@ -45,12 +53,17 @@ const SelectCity = ({ navigation }) => {
     }
   };
 
+  // Function to handle city selection
   const handleCitySelect = async (city) => {
     try {
+      // Save selected city to AsyncStorage
       await AsyncStorage.setItem("city", city);
+      // Update isNewUser status in authentication context
       setIsNewUser(false);
+      // Navigate to Home screen
       navigation.navigate("Home");
     } catch (error) {
+      // Handle error saving city
       console.error("Error saving city to AsyncStorage:", error);
       Toast.show({
         type: "error",
@@ -60,8 +73,10 @@ const SelectCity = ({ navigation }) => {
     }
   };
 
+  // Function to handle search input
   const handleSearch = (text) => {
     setSearch(text);
+    // Filter cities based on search query
     const filtered = cities.filter(
       (city) =>
         typeof city === "string" &&
@@ -70,6 +85,7 @@ const SelectCity = ({ navigation }) => {
     setFilteredCities(filtered);
   };
 
+  // JSX rendering
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -102,6 +118,7 @@ const SelectCity = ({ navigation }) => {
   );
 };
 
+// Styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,

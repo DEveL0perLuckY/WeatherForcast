@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const storedCountry = await AsyncStorage.getItem("country");
       const storedCity = await AsyncStorage.getItem("city");
-      
+
       if (!storedCountry || !storedCity) {
         setIsNewUser(true);
       }
@@ -24,13 +24,11 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-
   return (
     <AuthContext.Provider
       value={{
         isNewUser,
         setIsNewUser,
-        
       }}
     >
       {children}

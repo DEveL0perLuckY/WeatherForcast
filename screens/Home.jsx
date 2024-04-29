@@ -10,11 +10,13 @@ import {
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useEffect, useState } from "react";
+import { useState } from "react"; // Importing useState hook
 import react from "react";
 import Toast from "react-native-toast-message";
 
+// Home component
 const Home = () => {
+  // Function to format date string
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -41,8 +43,8 @@ const Home = () => {
   };
 
   const navigation = useNavigation();
-  const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState(null); // State for storing weather data
+  const [isLoading, setIsLoading] = useState(true); // State for loading indicator
   useFocusEffect(
     react.useCallback(() => {
       const fetchWeather = async () => {
@@ -77,266 +79,299 @@ const Home = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContent}>
-      {isLoading && (
+      {isLoading && ( // Display loading indicator if data is loading
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color="#0000ff" />
           <Text>Loading...</Text>
         </View>
       )}
-      {!isLoading && data && (
-        <>
-          <View style={styles.home}>
-            <View style={[styles.rectangle, styles.rectanglePosition1]} />
-            <View style={[styles.rectangleCopy, styles.mostlySunnyShadowBox]} />
-            <View style={[styles.rectangleContainer, styles.group12Layout]}>
-              <View style={[styles.rectangle3, styles.rectanglePosition]} />
-              <View style={styles.ovalGroup}>
-                <Text style={[styles.text2, styles.textPosition1]}>32</Text>
-              </View>
-              <Text style={[styles.text3, styles.textPosition]}>14:00</Text>
-              <Image
-                style={[styles.mostlySunnyCopyIcon, styles.iconLayout4]}
-                contentFit="cover"
-                source={require("../assets/mostly-sunny-copy.png")}
+      {!isLoading &&
+        data && ( // Display weather data if available and not loading
+          <>
+            <View style={styles.home}>
+              <View style={[styles.rectangle, styles.rectanglePosition1]} />
+              <View
+                style={[styles.rectangleCopy, styles.mostlySunnyShadowBox]}
               />
-            </View>
-            <View style={[styles.frameParent, styles.group13Layout]}>
-              <View style={[styles.ovalContainer, styles.group11CopyPosition]}>
-                <Text style={[styles.text4, styles.textTypo]}>33</Text>
+              <View style={[styles.rectangleContainer, styles.group12Layout]}>
+                <View style={[styles.rectangle3, styles.rectanglePosition]} />
+                <View style={styles.ovalGroup}>
+                  <Text style={[styles.text2, styles.textPosition1]}>32</Text>
+                </View>
+                <Text style={[styles.text3, styles.textPosition]}>14:00</Text>
+                <Image
+                  style={[styles.mostlySunnyCopyIcon, styles.iconLayout4]}
+                  contentFit="cover"
+                  source={require("../assets/mostly-sunny-copy.png")}
+                />
               </View>
-              <View style={[styles.group11Copy, styles.group11CopyPosition]}>
-                <Text style={[styles.text5, styles.textPosition]}>24</Text>
+              <View style={[styles.frameParent, styles.group13Layout]}>
+                <View
+                  style={[styles.ovalContainer, styles.group11CopyPosition]}
+                >
+                  <Text style={[styles.text4, styles.textTypo]}>33</Text>
+                </View>
+                <View style={[styles.group11Copy, styles.group11CopyPosition]}>
+                  <Text style={[styles.text5, styles.textPosition]}>24</Text>
+                </View>
+                <Text style={[styles.monNov17, styles.textPosition]}>
+                  Mon, Nov 17
+                </Text>
+                <Image
+                  style={[
+                    styles.mostlySunnyCopyIcon1,
+                    styles.rectanglePosition,
+                  ]}
+                  contentFit="cover"
+                  source={require("../assets/mostly-sunny-copy.png")}
+                />
               </View>
-              <Text style={[styles.monNov17, styles.textPosition]}>
-                Mon, Nov 17
-              </Text>
-              <Image
-                style={[styles.mostlySunnyCopyIcon1, styles.rectanglePosition]}
-                contentFit="cover"
-                source={require("../assets/mostly-sunny-copy.png")}
-              />
-            </View>
-            <View style={[styles.frameGroup, styles.kmParentPosition]}>
-              <View style={[styles.groupView, styles.rectanglePosition]}>
-                <Text style={[styles.text4, styles.textTypo]}>33</Text>
-                {/* here add the real feel */}
+              <View style={[styles.frameGroup, styles.kmParentPosition]}>
+                <View style={[styles.groupView, styles.rectanglePosition]}>
+                  <Text style={[styles.text4, styles.textTypo]}>33</Text>
+                  {/* here add the real feel */}
+                </View>
+                <Text style={[styles.realFeel, styles.textPosition]}>
+                  Real Feel
+                </Text>
               </View>
-              <Text style={[styles.realFeel, styles.textPosition]}>
-                Real Feel
-              </Text>
-            </View>
-            <View style={[styles.kmParent, styles.kmParentPosition]}>
-              <Text style={[styles.km, styles.textTypo]}>5km</Text>
-              <Text style={[styles.realFeel, styles.textPosition]}>
-                Visibility
-              </Text>
-            </View>
-            <View style={[styles.parent, styles.groupPosition]}>
-              <Text style={[styles.text7, styles.textTypo]}>0</Text>
-              <Text style={[styles.realFeel, styles.textPosition]}>
-                UV Index
-              </Text>
-            </View>
-            <View style={[styles.group, styles.groupPosition]}>
-              <Text style={[styles.text8, styles.textTypo]}>
-                {data.current.humidity}%
-              </Text>
-              {/* here add the humidity feel */}
+              <View style={[styles.kmParent, styles.kmParentPosition]}>
+                <Text style={[styles.km, styles.textTypo]}>5km</Text>
+                <Text style={[styles.realFeel, styles.textPosition]}>
+                  Visibility
+                </Text>
+              </View>
+              <View style={[styles.parent, styles.groupPosition]}>
+                <Text style={[styles.text7, styles.textTypo]}>0</Text>
+                <Text style={[styles.realFeel, styles.textPosition]}>
+                  UV Index
+                </Text>
+              </View>
+              <View style={[styles.group, styles.groupPosition]}>
+                <Text style={[styles.text8, styles.textTypo]}>
+                  {data.current.humidity}%
+                </Text>
+                {/* here add the humidity feel */}
 
-              <Text style={[styles.realFeel, styles.textPosition]}>
-                Humidity
-              </Text>
-            </View>
+                <Text style={[styles.realFeel, styles.textPosition]}>
+                  Humidity
+                </Text>
+              </View>
 
-            {/* rest of this static data so don't change that from here to */}
-            <View style={[styles.group13Copy, styles.group13Layout]}>
-              <View style={[styles.ovalContainer, styles.group11CopyPosition]}>
-                <Text style={[styles.text4, styles.textTypo]}>30</Text>
+              {/* rest of this static data so don't change that from here to */}
+              <View style={[styles.group13Copy, styles.group13Layout]}>
+                <View
+                  style={[styles.ovalContainer, styles.group11CopyPosition]}
+                >
+                  <Text style={[styles.text4, styles.textTypo]}>30</Text>
+                </View>
+                <View style={[styles.group11Copy, styles.group11CopyPosition]}>
+                  <Text style={[styles.text5, styles.textPosition]}>23</Text>
+                </View>
+                <Text style={[styles.monNov17, styles.textPosition]}>
+                  Tue, Nov 18
+                </Text>
+                <Image
+                  style={[
+                    styles.mostlySunnyCopyIcon1,
+                    styles.rectanglePosition,
+                  ]}
+                  contentFit="cover"
+                  source={require("../assets/clouds.png")}
+                />
               </View>
-              <View style={[styles.group11Copy, styles.group11CopyPosition]}>
-                <Text style={[styles.text5, styles.textPosition]}>23</Text>
+              <View style={[styles.group13Copy2, styles.group13Layout]}>
+                <View
+                  style={[styles.ovalContainer, styles.group11CopyPosition]}
+                >
+                  <Text style={[styles.text4, styles.textTypo]}>30</Text>
+                </View>
+                <View style={[styles.group11Copy, styles.group11CopyPosition]}>
+                  <Text style={[styles.text5, styles.textPosition]}>24</Text>
+                </View>
+                <Text style={[styles.monNov17, styles.textPosition]}>
+                  Wed, Nov 19
+                </Text>
+                <Image
+                  style={[
+                    styles.mostlySunnyCopyIcon1,
+                    styles.rectanglePosition,
+                  ]}
+                  contentFit="cover"
+                  source={require("../assets/rainy-lightning.png")}
+                />
               </View>
-              <Text style={[styles.monNov17, styles.textPosition]}>
-                Tue, Nov 18
-              </Text>
-              <Image
-                style={[styles.mostlySunnyCopyIcon1, styles.rectanglePosition]}
-                contentFit="cover"
-                source={require("../assets/clouds.png")}
-              />
-            </View>
-            <View style={[styles.group13Copy2, styles.group13Layout]}>
-              <View style={[styles.ovalContainer, styles.group11CopyPosition]}>
-                <Text style={[styles.text4, styles.textTypo]}>30</Text>
+              <View style={[styles.group13Copy3, styles.group13Layout]}>
+                <View
+                  style={[styles.ovalContainer, styles.group11CopyPosition]}
+                >
+                  <Text style={[styles.text4, styles.textTypo]}>28</Text>
+                </View>
+                <View style={[styles.group11Copy, styles.group11CopyPosition]}>
+                  <Text style={[styles.text5, styles.textPosition]}>22</Text>
+                </View>
+                <Text style={[styles.monNov17, styles.textPosition]}>
+                  Thu, Nov 20
+                </Text>
+                <Image
+                  style={[
+                    styles.mostlySunnyCopyIcon1,
+                    styles.rectanglePosition,
+                  ]}
+                  contentFit="cover"
+                  source={require("../assets/rainy.png")}
+                />
               </View>
-              <View style={[styles.group11Copy, styles.group11CopyPosition]}>
-                <Text style={[styles.text5, styles.textPosition]}>24</Text>
+              <View style={[styles.group13Copy4, styles.group13Layout]}>
+                <View
+                  style={[styles.ovalContainer, styles.group11CopyPosition]}
+                >
+                  <Text style={[styles.text4, styles.textTypo]}>28</Text>
+                </View>
+                <View style={[styles.group11Copy, styles.group11CopyPosition]}>
+                  <Text style={[styles.text5, styles.textPosition]}>22</Text>
+                </View>
+                <Text style={[styles.monNov17, styles.textPosition]}>
+                  Fri, Nov 21
+                </Text>
+                <Image
+                  style={[
+                    styles.mostlySunnyCopyIcon1,
+                    styles.rectanglePosition,
+                  ]}
+                  contentFit="cover"
+                  source={require("../assets/rainy.png")}
+                />
               </View>
-              <Text style={[styles.monNov17, styles.textPosition]}>
-                Wed, Nov 19
-              </Text>
-              <Image
-                style={[styles.mostlySunnyCopyIcon1, styles.rectanglePosition]}
-                contentFit="cover"
-                source={require("../assets/rainy-lightning.png")}
-              />
-            </View>
-            <View style={[styles.group13Copy3, styles.group13Layout]}>
-              <View style={[styles.ovalContainer, styles.group11CopyPosition]}>
-                <Text style={[styles.text4, styles.textTypo]}>28</Text>
+              <View style={[styles.group13Copy5, styles.group13Layout]}>
+                <View
+                  style={[styles.ovalContainer, styles.group11CopyPosition]}
+                >
+                  <Text style={[styles.text4, styles.textTypo]}>31</Text>
+                </View>
+                <View style={[styles.group11Copy, styles.group11CopyPosition]}>
+                  <Text style={[styles.text5, styles.textPosition]}>23</Text>
+                </View>
+                <Text style={[styles.monNov17, styles.textPosition]}>
+                  Sat, Nov 22
+                </Text>
+                <Image
+                  style={[
+                    styles.mostlySunnyCopyIcon1,
+                    styles.rectanglePosition,
+                  ]}
+                  contentFit="cover"
+                  source={require("../assets/mostly-sunny-copy.png")}
+                />
               </View>
-              <View style={[styles.group11Copy, styles.group11CopyPosition]}>
-                <Text style={[styles.text5, styles.textPosition]}>22</Text>
+              <View style={[styles.group12Copy, styles.group12Layout]}>
+                <View style={[styles.rectangle3, styles.rectanglePosition]} />
+                <View style={styles.ovalGroup}>
+                  <Text style={[styles.text2, styles.textPosition1]}>32</Text>
+                </View>
+                <Text style={[styles.text3, styles.textPosition]}>15:00</Text>
+                <Image
+                  style={[styles.mostlySunnyCopyIcon, styles.iconLayout4]}
+                  contentFit="cover"
+                  source={require("../assets/mostly-sunny-copy.png")}
+                />
               </View>
-              <Text style={[styles.monNov17, styles.textPosition]}>
-                Thu, Nov 20
-              </Text>
-              <Image
-                style={[styles.mostlySunnyCopyIcon1, styles.rectanglePosition]}
-                contentFit="cover"
-                source={require("../assets/rainy.png")}
-              />
-            </View>
-            <View style={[styles.group13Copy4, styles.group13Layout]}>
-              <View style={[styles.ovalContainer, styles.group11CopyPosition]}>
-                <Text style={[styles.text4, styles.textTypo]}>28</Text>
+              <View style={[styles.group12Copy2, styles.group12Layout]}>
+                <View style={[styles.rectangle3, styles.rectanglePosition]} />
+                <View style={styles.ovalGroup}>
+                  <Text style={[styles.text2, styles.textPosition1]}>31</Text>
+                </View>
+                <Text style={[styles.text3, styles.textPosition]}>16:00</Text>
+                <Image
+                  style={[styles.mostlySunnyCopyIcon, styles.iconLayout4]}
+                  contentFit="cover"
+                  source={require("../assets/cloudy-sunny.png")}
+                />
               </View>
-              <View style={[styles.group11Copy, styles.group11CopyPosition]}>
-                <Text style={[styles.text5, styles.textPosition]}>22</Text>
+              <View style={[styles.group12Copy3, styles.group12Layout]}>
+                <View style={[styles.rectangle3, styles.rectanglePosition]} />
+                <View style={styles.ovalGroup}>
+                  <Text
+                    style={[styles.text2, styles.textPosition1]}
+                  >{`30 `}</Text>
+                </View>
+                <Text style={[styles.text3, styles.textPosition]}>17:00</Text>
+                <Image
+                  style={[styles.mostlySunnyCopyIcon, styles.iconLayout4]}
+                  contentFit="cover"
+                  source={require("../assets/cloudy-sunny.png")}
+                />
               </View>
-              <Text style={[styles.monNov17, styles.textPosition]}>
-                Fri, Nov 21
-              </Text>
-              <Image
-                style={[styles.mostlySunnyCopyIcon1, styles.rectanglePosition]}
-                contentFit="cover"
-                source={require("../assets/rainy.png")}
-              />
-            </View>
-            <View style={[styles.group13Copy5, styles.group13Layout]}>
-              <View style={[styles.ovalContainer, styles.group11CopyPosition]}>
-                <Text style={[styles.text4, styles.textTypo]}>31</Text>
+              <View style={[styles.group12Copy4, styles.group12Layout]}>
+                <View style={[styles.rectangle3, styles.rectanglePosition]} />
+                <View style={styles.ovalGroup}>
+                  <Text style={[styles.text2, styles.textPosition1]}>29</Text>
+                </View>
+                <Text style={[styles.text3, styles.textPosition]}>18:00</Text>
+                <Image
+                  style={[styles.mostlySunnyCopyIcon, styles.iconLayout4]}
+                  contentFit="cover"
+                  source={require("../assets/cloudy.png")}
+                />
               </View>
-              <View style={[styles.group11Copy, styles.group11CopyPosition]}>
-                <Text style={[styles.text5, styles.textPosition]}>23</Text>
-              </View>
-              <Text style={[styles.monNov17, styles.textPosition]}>
-                Sat, Nov 22
-              </Text>
-              <Image
-                style={[styles.mostlySunnyCopyIcon1, styles.rectanglePosition]}
-                contentFit="cover"
-                source={require("../assets/mostly-sunny-copy.png")}
-              />
-            </View>
-            <View style={[styles.group12Copy, styles.group12Layout]}>
-              <View style={[styles.rectangle3, styles.rectanglePosition]} />
-              <View style={styles.ovalGroup}>
-                <Text style={[styles.text2, styles.textPosition1]}>32</Text>
-              </View>
-              <Text style={[styles.text3, styles.textPosition]}>15:00</Text>
-              <Image
-                style={[styles.mostlySunnyCopyIcon, styles.iconLayout4]}
-                contentFit="cover"
-                source={require("../assets/mostly-sunny-copy.png")}
-              />
-            </View>
-            <View style={[styles.group12Copy2, styles.group12Layout]}>
-              <View style={[styles.rectangle3, styles.rectanglePosition]} />
-              <View style={styles.ovalGroup}>
-                <Text style={[styles.text2, styles.textPosition1]}>31</Text>
-              </View>
-              <Text style={[styles.text3, styles.textPosition]}>16:00</Text>
-              <Image
-                style={[styles.mostlySunnyCopyIcon, styles.iconLayout4]}
-                contentFit="cover"
-                source={require("../assets/cloudy-sunny.png")}
-              />
-            </View>
-            <View style={[styles.group12Copy3, styles.group12Layout]}>
-              <View style={[styles.rectangle3, styles.rectanglePosition]} />
-              <View style={styles.ovalGroup}>
-                <Text
-                  style={[styles.text2, styles.textPosition1]}
-                >{`30 `}</Text>
-              </View>
-              <Text style={[styles.text3, styles.textPosition]}>17:00</Text>
-              <Image
-                style={[styles.mostlySunnyCopyIcon, styles.iconLayout4]}
-                contentFit="cover"
-                source={require("../assets/cloudy-sunny.png")}
-              />
-            </View>
-            <View style={[styles.group12Copy4, styles.group12Layout]}>
-              <View style={[styles.rectangle3, styles.rectanglePosition]} />
-              <View style={styles.ovalGroup}>
-                <Text style={[styles.text2, styles.textPosition1]}>29</Text>
-              </View>
-              <Text style={[styles.text3, styles.textPosition]}>18:00</Text>
-              <Image
-                style={[styles.mostlySunnyCopyIcon, styles.iconLayout4]}
-                contentFit="cover"
-                source={require("../assets/cloudy.png")}
-              />
-            </View>
-            <Text style={[styles.today, styles.todayTypo]}>Today</Text>
-            <Text style={[styles.everyDay, styles.todayTypo]}>Every day</Text>
-            <Text style={[styles.detail, styles.todayTypo]}>Detail</Text>
+              <Text style={[styles.today, styles.todayTypo]}>Today</Text>
+              <Text style={[styles.everyDay, styles.todayTypo]}>Every day</Text>
+              <Text style={[styles.detail, styles.todayTypo]}>Detail</Text>
 
-            <View style={[styles.mostlySunny, styles.rectangle9Layout]}>
-              <View style={[styles.rectangle9, styles.rectangle9Layout]} />
-              <View style={[styles.group1, styles.groupLayout]}>
-                <View style={[styles.group2, styles.groupLayout]}>
-                  <Image
-                    style={[styles.ellipse11Icon, styles.iconLayout3]}
-                    contentFit="cover"
-                    source={{ uri: `https:${data.current.condition.icon}` }}
-                  />
+              <View style={[styles.mostlySunny, styles.rectangle9Layout]}>
+                <View style={[styles.rectangle9, styles.rectangle9Layout]} />
+                <View style={[styles.group1, styles.groupLayout]}>
+                  <View style={[styles.group2, styles.groupLayout]}>
+                    <Image
+                      style={[styles.ellipse11Icon, styles.iconLayout3]}
+                      contentFit="cover"
+                      source={{ uri: `https:${data.current.condition.icon}` }}
+                    />
+                  </View>
                 </View>
               </View>
-            </View>
-            <Text style={[styles.mostlySunny1, styles.textTypo]}>
-              {data.current.condition.text}
-            </Text>
-            <View style={styles.wrapper}>
-              <Text style={[styles.text29, styles.text29Typo]}>
-                {data.current.temp_c}°
+              <Text style={[styles.mostlySunny1, styles.textTypo]}>
+                {data.current.condition.text}
               </Text>
-            </View>
-            <Text style={[styles.sunNovember16, styles.textClr]}>
-              {data && formatDate(data.current.last_updated)}
-            </Text>
-            <View
-              style={{
-                textAlign: "center",
-              }}
-            >
-              <Text style={[styles.newMexico, styles.text29Typo]}>
-                {data.location.name}, {data.location.region}
+              <View style={styles.wrapper}>
+                <Text style={[styles.text29, styles.text29Typo]}>
+                  {data.current.temp_c}°
+                </Text>
+              </View>
+              <Text style={[styles.sunNovember16, styles.textClr]}>
+                {data && formatDate(data.current.last_updated)}
               </Text>
-            </View>
-            <Pressable
-              style={[styles.icoAdd, styles.icoAddLayout]}
-              onPress={() => navigation.navigate("SelectCountry")}
-            >
+              <View
+                style={{
+                  textAlign: "center",
+                }}
+              >
+                <Text style={[styles.newMexico, styles.text29Typo]}>
+                  {data.location.name}, {data.location.region}
+                </Text>
+              </View>
+              <Pressable
+                style={[styles.icoAdd, styles.icoAddLayout]}
+                onPress={() => navigation.navigate("SelectCountry")}
+              >
+                <Image
+                  source={require("../assets/addIcon12.png")}
+                  style={styles.categoryImage}
+                />
+              </Pressable>
               <Image
-                source={require("../assets/addIcon12.png")}
-                style={styles.categoryImage}
+                style={[styles.dividerIcon, styles.iconLayout]}
+                contentFit="cover"
+                source={require("../assets/divider.png")}
               />
-            </Pressable>
-            <Image
-              style={[styles.dividerIcon, styles.iconLayout]}
-              contentFit="cover"
-              source={require("../assets/divider.png")}
-            />
-            <Image
-              style={[styles.divider2Icon, styles.iconLayout]}
-              contentFit="cover"
-              source={require("../assets/divider.png")}
-            />
-          </View>
-        </>
-      )}
+              <Image
+                style={[styles.divider2Icon, styles.iconLayout]}
+                contentFit="cover"
+                source={require("../assets/divider.png")}
+              />
+            </View>
+          </>
+        )}
     </ScrollView>
   );
 };
