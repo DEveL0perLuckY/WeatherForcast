@@ -13,7 +13,7 @@ const GetStarted = () => {
       <LinearGradient
         style={styles.rectangle}
         locations={[0, 0.5, 1]}
-        colors={['#3C2DB9', '#211772', '#342798']}
+        colors={["#3C2DB9", "#211772", "#342798"]}
       />
       <Image
         style={styles.ovalCopy3}
@@ -92,8 +92,7 @@ const GetStarted = () => {
           Forecast App.
         </Text>
         <Text style={[styles.itsTheNewest, styles.forecastAppClr]}>
-          It's the newest weather app. It has a bunch of features and that
-          includes most of the ones that every weather app has.
+          Welcome to my Weather App!
         </Text>
       </View>
       <Pressable
