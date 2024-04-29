@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "weatherui",
-    "slug": "weatherui",
+    "slug": "weatherforcast",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -32,8 +32,9 @@
     },
     "extra": {
       "eas": {
-        "projectId": "e906e46f-2a96-4426-adab-00c0d4c24be2"
+        "projectId": "fd397042-63a6-44da-af50-9f4ffdddce1e"
       }
-    }
+    },
+    "owner": "lucky121290"
   }
 }

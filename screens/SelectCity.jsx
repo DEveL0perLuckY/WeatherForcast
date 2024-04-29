@@ -1,16 +1,23 @@
 import React, { useEffect, useState, useContext } from "react";
-import { View, Text, TextInput, Button, FlatList, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  FlatList,
+  StyleSheet,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { AuthContext } from "./AuthContext";
-import Toast from 'react-native-toast-message';
+import Toast from "react-native-toast-message";
 
 const SelectCity = ({ navigation }) => {
   const [cities, setCities] = useState([]);
   const [search, setSearch] = useState("");
   const [filteredCities, setFilteredCities] = useState([]);
-  const { checkUserData } = useContext(AuthContext);
+  const { setIsNewUser } = useContext(AuthContext);
   const [country, setCountry] = useState("");
 
   useEffect(() => {
@@ -31,9 +38,9 @@ const SelectCity = ({ navigation }) => {
     } catch (error) {
       console.error("Error fetching cities:", error);
       Toast.show({
-        type: 'error',
-        text1: 'Error',
-        text2: 'Failed to fetch cities. Please check your internet connection.',
+        type: "error",
+        text1: "Error",
+        text2: "Failed to fetch cities. Please check your internet connection.",
       });
     }
   };
@@ -41,22 +48,24 @@ const SelectCity = ({ navigation }) => {
   const handleCitySelect = async (city) => {
     try {
       await AsyncStorage.setItem("city", city);
-      checkUserData();
+      setIsNewUser(false);
       navigation.navigate("Home");
     } catch (error) {
       console.error("Error saving city to AsyncStorage:", error);
       Toast.show({
-        type: 'error',
-        text1: 'Error',
-        text2: 'Failed to save city. Please try again.',
+        type: "error",
+        text1: "Error",
+        text2: "Failed to save city. Please try again.",
       });
     }
   };
 
   const handleSearch = (text) => {
     setSearch(text);
-    const filtered = cities.filter((city) =>
-      typeof city === "string" && city.toLowerCase().includes(text.toLowerCase())
+    const filtered = cities.filter(
+      (city) =>
+        typeof city === "string" &&
+        city.toLowerCase().includes(text.toLowerCase())
     );
     setFilteredCities(filtered);
   };

@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
       value={{
         isNewUser,
         setIsNewUser,
-        checkUserData
+        
       }}
     >
       {children}
