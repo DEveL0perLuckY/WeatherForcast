@@ -4,6 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { AuthContext } from "./AuthContext";
+import Toast from 'react-native-toast-message';
 
 const SelectCity = ({ navigation }) => {
   const [cities, setCities] = useState([]);
@@ -29,13 +30,27 @@ const SelectCity = ({ navigation }) => {
       setFilteredCities(data);
     } catch (error) {
       console.error("Error fetching cities:", error);
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: 'Failed to fetch cities. Please check your internet connection.',
+      });
     }
   };
 
   const handleCitySelect = async (city) => {
-    await AsyncStorage.setItem("city", city);
-    checkUserData();
-    navigation.navigate("Home");
+    try {
+      await AsyncStorage.setItem("city", city);
+      checkUserData();
+      navigation.navigate("Home");
+    } catch (error) {
+      console.error("Error saving city to AsyncStorage:", error);
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: 'Failed to save city. Please try again.',
+      });
+    }
   };
 
   const handleSearch = (text) => {
@@ -73,6 +88,7 @@ const SelectCity = ({ navigation }) => {
           </View>
         )}
       />
+      <Toast ref={(ref) => Toast.setRef(ref)} />
     </View>
   );
 };

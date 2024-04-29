@@ -12,6 +12,7 @@ import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 import react from "react";
+import Toast from "react-native-toast-message";
 
 const Home = () => {
   const formatDate = (dateString) => {
@@ -51,6 +52,9 @@ const Home = () => {
           const response = await fetch(
             `https://api.weatherapi.com/v1/current.json?key=908601d4689e419798a74550242804&q=${con}`
           );
+          if (!response.ok) {
+            throw new Error("Failed to fetch weather");
+          }
           const res = await response.json();
           if (res) {
             setData(res);
@@ -59,11 +63,18 @@ const Home = () => {
         } catch (error) {
           console.error("Error fetching weather:", error);
           setIsLoading(false); // Set loading state to false in case of error
+          Toast.show({
+            type: "error",
+            text1: "Error",
+            text2:
+              "Failed to fetch weather. Please check your internet connection.",
+          });
         }
       };
       fetchWeather(); // Fetch weather data when component gains focus
     }, [])
   );
+
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContent}>
       {isLoading && (

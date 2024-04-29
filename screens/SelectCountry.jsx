@@ -1,8 +1,8 @@
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, TextInput, Button, FlatList, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import Toast from 'react-native-toast-message';
 
 const SelectCountry = ({ navigation }) => {
   const [countries, setCountries] = useState([]);
@@ -16,17 +16,34 @@ const SelectCountry = ({ navigation }) => {
   const fetchCountries = async () => {
     try {
       const response = await fetch("https://restcountries.com/v3.1/all");
+      if (!response.ok) {
+        throw new Error('Failed to fetch countries');
+      }
       const data = await response.json();
       setCountries(data);
       setFilteredCountries(data);
     } catch (error) {
       console.error("Error fetching countries:", error);
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: 'Failed to fetch countries. Please check your internet connection.',
+      });
     }
   };
 
   const handleCountrySelect = async (country)  => {
-    await AsyncStorage.setItem('country',country);
-    navigation.navigate("SelectCity");
+    try {
+      await AsyncStorage.setItem('country', country);
+      navigation.navigate("SelectCity");
+    } catch (error) {
+      console.error("Error saving country to AsyncStorage:", error);
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: 'Failed to save country. Please try again.',
+      });
+    }
   };
 
   const handleSearch = (text) => {
@@ -61,6 +78,7 @@ const SelectCountry = ({ navigation }) => {
           </View>
         )}
       />
+      <Toast ref={(ref) => Toast.setRef(ref)} />
     </View>
   );
 };
