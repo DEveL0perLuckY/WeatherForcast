@@ -12,6 +12,11 @@ Check out the video demonstration of the app [here](https://www.youtube.com/watc
 - Select City: After selecting a country, users can choose a city from the list of cities in that country.
 - View Weather: Users can view the current weather details of the selected city, including temperature, humidity, wind speed, and more.
 
+## Screenshots
+
+<img src="https://github.com/DEveL0perLuckY/WeatherForcast/blob/main/img1.jpg" width="250" height="500" />
+<img src="https://github.com/DEveL0perLuckY/WeatherForcast/blob/main/img2.jpg" width="250" height="500" />
+
 ## Technologies Used
 
 - React Native: A JavaScript framework for building native mobile apps.
@@ -45,18 +50,21 @@ Contributions are welcome! If you find any bugs or want to suggest improvements,
 Download the APK file [here](https://drive.google.com/file/d/1K_HqrAnPkImcE3n3N4Fn9pFdcOVfwbg7/view?usp=sharing).
 
 # Recommended next steps:
+
 Note: Make sure you have installed native code dependencies [here](https://reactnative.dev/docs/environment-setup#installing-dependencies)
 
 ### To preview and run the project on your device:
+
 1. Open project folder in **Visual Studio Code**
-2. Run  `npm install`  in the terminal
-3. Run  `npx expo start`  in the terminal
+2. Run `npm install` in the terminal
+3. Run `npx expo start` in the terminal
 4. Run on For iOS device (only on MacOS)
-    1. Press  `i`  to view on iOS simulator or follow the instructions [here](https://docs.expo.dev/workflow/run-on-device/) to run on a physical device.
+   1. Press `i` to view on iOS simulator or follow the instructions [here](https://docs.expo.dev/workflow/run-on-device/) to run on a physical device.
 5. Run on For android device
-    1. Press  `a`  to view on Android Virtual Device or follow the instructions [here](https://docs.expo.dev/workflow/run-on-device/) to run on a physical device.
+   1. Press `a` to view on Android Virtual Device or follow the instructions [here](https://docs.expo.dev/workflow/run-on-device/) to run on a physical device.
 
 ### Additional Notes:
+
 - Make sure you have Xcode installed for iOS development.
 - For Android development, ensure you have Android Studio installed.
 - Follow the Expo documentation for detailed instructions on running the app on your device or emulator.
