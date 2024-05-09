@@ -35,6 +35,9 @@
         "projectId": "fd397042-63a6-44da-af50-9f4ffdddce1e"
       }
     },
-    "owner": "lucky121290"
+    "owner": "lucky121290",
+    "plugins": [
+      "expo-font"
+    ]
   }
 }
