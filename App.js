@@ -11,17 +11,16 @@ const Stack = createNativeStackNavigator();
 
 const App = () => {
   const { isNewUser } = useContext(AuthContext);
+
   // until isNewUser is locading  i have to show something u know
-  // war na null pointer exception aa jiye ga 
+  // war na null pointer exception aa jiye ga
   return (
     <NavigationContainer>
       <StatusBar backgroundColor="#211772" barStyle="light-content" />
-      
+
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-    
         {isNewUser ? (
-    
-    <>
+          <>
             <Stack.Screen
               name="GetStarted"
               component={GetStarted}
@@ -61,7 +60,6 @@ export default () => {
   return (
     <AuthProvider>
       <App />
-      
     </AuthProvider>
   );
 };

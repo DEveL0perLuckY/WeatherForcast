@@ -1,12 +1,5 @@
 import * as React from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  Pressable,
-  StatusBar,
-  Image,
-} from "react-native";
+import { StyleSheet, View, Text, Pressable, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 

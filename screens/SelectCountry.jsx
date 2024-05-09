@@ -6,8 +6,7 @@ import {
   FlatList,
   StyleSheet,
   ActivityIndicator,
-  ToastAndroid,
-} from "react-native"; // Import ToastAndroid
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
